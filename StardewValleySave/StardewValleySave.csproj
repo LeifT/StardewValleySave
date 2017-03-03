@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>feb1dc3a-42c2-4b83-9ef3-5d3059c379ab</ProjectGuid>
+    <ProjectGuid>{FEB1DC3A-42C2-4B83-9EF3-5D3059C379AB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StardewValleySave</RootNamespace>
     <AssemblyName>StardewValleySave</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,25 +31,170 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AnimalHouse.cs" />
+    <Compile Include="Buildings\Barn.cs" />
+    <Compile Include="Buildings\Building.cs" />
+    <Compile Include="Buildings\Coop.cs" />
+    <Compile Include="Buildings\JunimoHut.cs" />
+    <Compile Include="Buildings\Mill.cs" />
+    <Compile Include="Buildings\Stable.cs" />
+    <Compile Include="Characters\Cat.cs" />
+    <Compile Include="Characters\Child.cs" />
+    <Compile Include="Characters\Dog.cs" />
+    <Compile Include="Objects\Fence.cs" />
+    <Compile Include="Monsters\DustSpirit.cs" />
+    <Compile Include="Monsters\Fly.cs" />
+    <Compile Include="Monsters\GreenSlime.cs" />
+    <Compile Include="Characters\Horse.cs" />
+    <Compile Include="Monsters\Grub.cs" />
+    <Compile Include="Monsters\LavaCrab.cs" />
+    <Compile Include="Characters\Pet.cs" />
+    <Compile Include="Chunk.cs" />
+    <Compile Include="Crop.cs" />
+    <Compile Include="Debris.cs" />
+    <Compile Include="FarmAnimal.cs" />
+    <Compile Include="Locations\GameLocation.cs" />
+    <Compile Include="InputButton.cs" />
+    <Compile Include="Locations\BuildableGameLocation.cs" />
+    <Compile Include="Locations\DecoratableLocation.cs" />
+    <Compile Include="Locations\MineInfo.cs" />
+    <Compile Include="Locations\MineShaft.cs" />
+    <Compile Include="Locations\Shed.cs" />
+    <Compile Include="Locations\SlimeHutch.cs" />
+    <Compile Include="Monsters\BigSlime.cs" />
+    <Compile Include="Monsters\Bug.cs" />
+    <Compile Include="Monsters\Crow.cs" />
+    <Compile Include="Monsters\Duggy.cs" />
+    <Compile Include="Monsters\Fireball.cs" />
+    <Compile Include="Monsters\Ghost.cs" />
+    <Compile Include="Monsters\MetalHead.cs" />
+    <Compile Include="Monsters\Monster.cs" />
+    <Compile Include="Monsters\RockCrab.cs" />
+    <Compile Include="Monsters\ShadowGirl.cs" />
+    <Compile Include="Monsters\ShadowGuy.cs" />
+    <Compile Include="Monsters\SkeletonMage.cs" />
+    <Compile Include="Monsters\SkeletonWarrior.cs" />
+    <Compile Include="Monsters\SquidKid.cs" />
+    <Compile Include="Objects\BreakableContainer.cs" />
+    <Compile Include="Objects\Cask.cs" />
+    <Compile Include="Objects\Chest.cs" />
+    <Compile Include="Objects\ColoredObject.cs" />
+    <Compile Include="Objects\CrabPot.cs" />
+    <Compile Include="Objects\Door.cs" />
+    <Compile Include="Objects\Furniture.cs" />
+    <Compile Include="Objects\SpecialItem.cs" />
+    <Compile Include="Objects\SwitchFloor.cs" />
+    <Compile Include="Objects\Torch.cs" />
+    <Compile Include="Objects\TV.cs" />
+    <Compile Include="Objects\Wallpaper.cs" />
+    <Compile Include="Objects\WickedStatue.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BarnDweller.cs" />
+    <Compile Include="BuildingUpgrade.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="CoopDweller.cs" />
+    <Compile Include="Characters\Farmer.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Locations\AdventureGuild.cs" />
+    <Compile Include="Locations\BathHousePool.cs" />
+    <Compile Include="Locations\Beach.cs" />
+    <Compile Include="Locations\BusStop.cs" />
+    <Compile Include="Locations\Cellar.cs" />
+    <Compile Include="Locations\Club.cs" />
+    <Compile Include="Locations\CommunityCenter.cs" />
+    <Compile Include="Locations\Desert.cs" />
+    <Compile Include="Locations\Farm.cs" />
+    <Compile Include="Locations\FarmCave.cs" />
+    <Compile Include="Locations\FarmHouse.cs" />
+    <Compile Include="Locations\Forest.cs" />
+    <Compile Include="Locations\JojaMart.cs" />
+    <Compile Include="Locations\LibraryMuseum.cs" />
+    <Compile Include="Locations\Mountain.cs" />
+    <Compile Include="Locations\Railroad.cs" />
+    <Compile Include="Locations\SeedShop.cs" />
+    <Compile Include="Locations\Sewer.cs" />
+    <Compile Include="Locations\Summit.cs" />
+    <Compile Include="Locations\Town.cs" />
+    <Compile Include="Locations\WizardHouse.cs" />
+    <Compile Include="Locations\Woods.cs" />
+    <Compile Include="NPC.cs" />
+    <Compile Include="Objects\Object.cs" />
+    <Compile Include="Objects\Boots.cs" />
+    <Compile Include="Objects\Hat.cs" />
+    <Compile Include="Objects\Ring.cs" />
+    <Compile Include="Quests\CraftingQuest.cs" />
+    <Compile Include="Quests\FishingQuest.cs" />
+    <Compile Include="Quests\GoSomewhereQuest.cs" />
+    <Compile Include="Quests\ItemDeliveryQuest.cs" />
+    <Compile Include="Quests\ItemHarvestQuest.cs" />
+    <Compile Include="Quests\LostItemQuest.cs" />
+    <Compile Include="Quests\Quest.cs" />
+    <Compile Include="Quests\ResourceCollectionQuest.cs" />
+    <Compile Include="Quests\SlayMonsterQuest.cs" />
+    <Compile Include="Quests\SocializeQuest.cs" />
+    <Compile Include="SaveGame.cs" />
+    <Compile Include="SerializableDictionary.cs" />
+    <Compile Include="Stats.cs" />
+    <Compile Include="TerrainFeatures\Bush.cs" />
+    <Compile Include="TerrainFeatures\CosmeticPlant.cs" />
+    <Compile Include="TerrainFeatures\Flooring.cs" />
+    <Compile Include="TerrainFeatures\FruitTree.cs" />
+    <Compile Include="TerrainFeatures\GiantCrop.cs" />
+    <Compile Include="TerrainFeatures\Grass.cs" />
+    <Compile Include="TerrainFeatures\HoeDirt.cs" />
+    <Compile Include="TerrainFeatures\LargeTerrainFeature.cs" />
+    <Compile Include="TerrainFeatures\Quartz.cs" />
+    <Compile Include="TerrainFeatures\ResourceClump.cs" />
+    <Compile Include="TerrainFeatures\Stalagmite.cs" />
+    <Compile Include="TerrainFeatures\TerrainFeature.cs" />
+    <Compile Include="TerrainFeatures\Tree.cs" />
+    <Compile Include="Tools\Tool.cs" />
+    <Compile Include="Tools\Axe.cs" />
+    <Compile Include="Tools\FishingRod.cs" />
+    <Compile Include="Tools\Hoe.cs" />
+    <Compile Include="Tools\MagnifyingGlass.cs" />
+    <Compile Include="Tools\MeleeWeapon.cs" />
+    <Compile Include="Tools\MilkPail.cs" />
+    <Compile Include="Tools\Pan.cs" />
+    <Compile Include="Tools\Pickaxe.cs" />
+    <Compile Include="Tools\Shears.cs" />
+    <Compile Include="Tools\Slingshot.cs" />
+    <Compile Include="Tools\Stackable.cs" />
+    <Compile Include="Tools\Wand.cs" />
+    <Compile Include="Tools\WateringCan.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +204,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
