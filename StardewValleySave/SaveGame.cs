@@ -57,34 +57,24 @@ namespace StardewValleySave {
         public int minecartHighScore;
         public int weatherForTomorrow;
         public int whichFarm;
-
-        public static SaveGame loaded;
-
+        
         static SaveGame() {
-            serializer = new XmlSerializer(typeof(SaveGame), new Type[] { typeof(Tool), typeof(GameLocation), typeof(Crow), typeof(Duggy), typeof(Bug), typeof(BigSlime), typeof(Fireball), typeof(Ghost), typeof(Child), typeof(Pet), typeof(Dog), typeof(Cat), typeof(Horse), typeof(GreenSlime), typeof(LavaCrab), typeof(RockCrab), typeof(ShadowGuy), typeof(SkeletonMage), typeof(SquidKid), typeof(Grub), typeof(Fly), typeof(DustSpirit), typeof(Quest), typeof(MetalHead), typeof(ShadowGirl), typeof(Monster), typeof(TerrainFeature) });
-            farmerSerializer = new XmlSerializer(typeof(Farmer), new Type[] { typeof(Tool) });
+            serializer = new XmlSerializer(typeof(SaveGame), new [] { typeof(Tool), typeof(GameLocation), typeof(Crow), typeof(Duggy), typeof(Bug), typeof(BigSlime), typeof(Fireball), typeof(Ghost), typeof(Child), typeof(Pet), typeof(Dog), typeof(Cat), typeof(Horse), typeof(GreenSlime), typeof(LavaCrab), typeof(RockCrab), typeof(ShadowGuy), typeof(SkeletonMage), typeof(SquidKid), typeof(Grub), typeof(Fly), typeof(DustSpirit), typeof(Quest), typeof(MetalHead), typeof(ShadowGirl), typeof(Monster), typeof(TerrainFeature) });
+            farmerSerializer = new XmlSerializer(typeof(Farmer), new [] { typeof(Tool) });
         }
 
-        public void Save() {
-            Stream stream = null;
+        private SaveGame() { }
 
-            try {
-                stream = File.Create(loaded.player.name);
-            }
-            catch (IOException) {
-                if (stream != null) {
-                    stream.Close();
-                    stream.Dispose();
-                }
-            }
-
-            XmlWriterSettings xmlWriterSetting = new XmlWriterSettings() {
+        public void Save(string filePath) {
+            Stream stream = File.Create(filePath);
+            
+            XmlWriterSettings xmlWriterSetting = new XmlWriterSettings {
                 CloseOutput = true
             };
 
             using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlWriterSetting)) {
                 xmlWriter.WriteStartDocument();
-                serializer.Serialize(xmlWriter, loaded);
+                serializer.Serialize(xmlWriter, this);
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Flush();
             }
@@ -93,26 +83,39 @@ namespace StardewValleySave {
             stream.Dispose();
         }
 
-        public void Load(string file) {
-            string[] folderPath = { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StardewValley", "Saves", file, file };
-            string filePath = Path.Combine(folderPath);
+        public static List<SaveGameInfo> GetSaves() {
+            List <SaveGameInfo> saves = new List<SaveGameInfo>();
+
+            string saveFolder = Path.Combine(new [] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StardewValley", "Saves" });
+
+            if (Directory.Exists(saveFolder)) {
+                var directories = Directory.GetDirectories(saveFolder);
+
+                if (directories.Length <= 0) {
+                    return saves;
+                }
+
+                foreach (string directory in directories) {
+                    Stream stream = File.Open(Path.Combine(directory, "SaveGameInfo"), FileMode.Open);
+                    Farmer farmer = (Farmer)farmerSerializer.Deserialize(stream);
+                    saves.Add(new SaveGameInfo(farmer, new DirectoryInfo(directory).Name));
+                    stream.Close();
+                }
+            } 
+
+            return saves;
+        }
+
+        public SaveGame Load(string filePath) {
+            SaveGame save = null;
+
+            if (File.Exists(filePath)) {
+                Stream stream = File.Open(filePath, FileMode.Open);
+                save = (SaveGame)serializer.Deserialize(stream);
+                stream.Close();
+            }
             
-            if (!File.Exists(filePath)) {
-                return;
-            }
-          
-            Stream stream = null;
-
-            try {
-                stream = File.Open(filePath, FileMode.Open);
-                
-            } catch (IOException) {
-                stream?.Close();
-                return;
-            }
-
-            loaded = (SaveGame)serializer.Deserialize(stream);
-            stream.Close();
+            return save;
         }
     }
 }

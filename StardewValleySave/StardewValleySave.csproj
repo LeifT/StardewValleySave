@@ -166,6 +166,7 @@
     <Compile Include="Quests\SlayMonsterQuest.cs" />
     <Compile Include="Quests\SocializeQuest.cs" />
     <Compile Include="SaveGame.cs" />
+    <Compile Include="SaveGameInfo.cs" />
     <Compile Include="SerializableDictionary.cs" />
     <Compile Include="Stats.cs" />
     <Compile Include="TerrainFeatures\Bush.cs" />
